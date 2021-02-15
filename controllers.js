@@ -19,27 +19,13 @@ angularApp.controller('homeController', [
 
 angularApp.controller('forecastController', [
   '$scope',
-  '$log',
-  '$resource',
   '$routeParams',
   'mainService',
-  function ($scope, $log, $resource, $routeParams, mainService) {
+  'weatherService',
+  function ($scope, $routeParams, mainService, weatherService) {
     $scope.cityName = mainService.cityName;
     $scope.days = +$routeParams.days || 8;
-
-    $scope.weaterAPI = $resource(
-      'http://api.openweathermap.org/data/2.5/forecast',
-      {
-        callback: 'JSON_CALLBACK',
-      },
-      { get: { method: 'JSONP' } }
-    );
-
-    $scope.weatherResult = $scope.weaterAPI.get({
-      q: $scope.cityName,
-      cnt: $scope.days,
-      appid: '6ef068fef07887c83763f06b58598a26',
-    });
+    $scope.weatherResult = weatherService.getWeather($scope.cityName, $scope.days);
 
     $scope.convertToCelsius = function (degK) {
       return Math.round(degK - 273.15);
