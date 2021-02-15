@@ -1,0 +1,10 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">
+      Date: {{convertToDate({date:infoDate}) | date:dateFormat}}
+    </h3>
+  </div>
+  <div class="panel-body">
+    Temperature: {{convertToStandard({degK:infoTemp})}} &#x2103;
+  </div>
+</div>
