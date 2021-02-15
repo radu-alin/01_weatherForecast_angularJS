@@ -1,10 +1,9 @@
 //controllers
 angularApp.controller('homeController', [
   '$scope',
-  '$log',
   '$location',
   'mainService',
-  function ($scope, $log, $location, mainService) {
+  function ($scope, $location, mainService) {
     $scope.cityName = mainService.cityName;
 
     $scope.$watch('cityName', function () {
