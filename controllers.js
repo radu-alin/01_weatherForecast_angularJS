@@ -24,6 +24,7 @@ angularApp.controller('forecastController', [
   function ($scope, $routeParams, mainService, weatherService) {
     $scope.cityName = mainService.cityName;
     $scope.days = +$routeParams.days || 8;
+
     $scope.weatherResult = weatherService.getWeather($scope.cityName, $scope.days);
 
     $scope.convertToCelsius = function (degK) {
